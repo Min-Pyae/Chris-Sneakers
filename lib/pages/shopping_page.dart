@@ -19,7 +19,7 @@ class ShoppingPage extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) { 
-          Future.delayed(const Duration(milliseconds: 800), () {
+          Future.delayed(const Duration(milliseconds: 600), () {
             Navigator.of(context).pop(true);
           });
           return const AlertDialog(

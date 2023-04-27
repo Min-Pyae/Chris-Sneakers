@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sneaker_app/components/app_button.dart';
 import 'package:sneaker_app/components/cart_item.dart';
 import 'package:sneaker_app/const.dart';
 import 'package:sneaker_app/models/cart.dart';
 import 'package:sneaker_app/models/sneaker.dart';
+import 'package:sneaker_app/pages/home_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -13,10 +15,40 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  final cart = Provider.of<Cart>;
 
-  void deleteItemFromCart(Sneaker sneaker) {
-    Provider.of<Cart>(context, listen: false).removeItemFromCart(sneaker);
+  void payButtonOnPressed() {
+    if (cart(context, listen: false).getCartList.isEmpty) {
+      
+    } else {
+      // CLEAR CART LIST
+      cart(context, listen: false).clearCartList();
+
+      // NAVIGATE TO HOME PAGE
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const HomePage())
+      );
+
+      // SHOW DIALOG
+      showDialog(
+        context: context,
+        builder: (context) { 
+          Future.delayed(const Duration(milliseconds: 800), () {
+            Navigator.of(context).pop(true);
+          });
+          return const AlertDialog(
+            backgroundColor: Colors.black87,
+            title: Text('Thank you for your purchase!',
+            style: TextStyle(
+              color: Colors.white
+            ),),
+          );
+        }
+      );
+    }
   }
+
+  void deleteItemFromCart(Sneaker sneaker) => cart(context, listen: false).removeItemFromCart(sneaker);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +60,7 @@ class _CartPageState extends State<CartPage> {
           vertical: 10.0
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
             const Text(
               'My Cart',
@@ -58,6 +90,19 @@ class _CartPageState extends State<CartPage> {
                   );
                 }
               ) 
+            ),
+
+            // PAY NOW BUTTON
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10.0
+              ),
+              child: Center(
+                child: AppButton(
+                  buttonText: 'Pay Now',
+                  onPressed: () => payButtonOnPressed(),
+                ),
+              ),
             )
           ],
         ),

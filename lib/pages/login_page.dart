@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sneaker_app/components/app_button.dart';
 
 import 'home_page.dart';
 
@@ -50,28 +51,14 @@ class LoginPage extends StatelessWidget {
                   ),
 
                   // LOGIN BUTTON
-                  ElevatedButton(
+                  AppButton(
+                    buttonText: 'Shop Now',
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: ((context) => const HomePage())
-                        )
+                        MaterialPageRoute(builder: (context) => const HomePage())
                       );
-                    }, 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black87,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 30
-                      )
-                    ),
-                    child: const Text(
-                      'Shop Now',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
-                      ),
-                  )) ,
+                    },
+                  )
                 ],
               ),
             ),

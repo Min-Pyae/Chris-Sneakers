@@ -43,4 +43,9 @@ class Cart extends ChangeNotifier {
     _cartList.remove(sneaker);
     notifyListeners();
   }
+
+
+  // CLEAR CART LIST
+  void clearCartList() => _cartList.clear();
+
 }
