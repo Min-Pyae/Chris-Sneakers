@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sneaker_app/pages/home_page.dart';
 
 class AppButton extends StatelessWidget {
   final String buttonText;
