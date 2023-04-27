@@ -16,19 +16,20 @@ class MenuDrawer extends StatelessWidget {
             children: [
               // LOGO
               DrawerHeader(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: Divider.createBorderSide(context,
+                      color: Colors.grey[800]),
+                  ),
+                ),
                 child: Image.asset(
-                  'images/nike_sm.png',
+                  'images/nike_logo.png',
                   color: Colors.white,
                 ),
               ),
 
               // Divider
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Divider(
-                  color: Colors.grey[800],
-                ),
-              ),
+              
 
               // HOME
               DrawerListTile(

@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
                 children: [
 
                   // LOGO
-                  Image.asset('images/nike_lg.png'),
+                  Image.asset('images/nike_logo.png'),
 
                   // TITLE 
                   const Text(
